@@ -12,7 +12,7 @@ class BattleResult
     private $winningShip;
     private $losingShip;
 
-    public function __construct(Bool $usedSpatiodriveBoosters, Ship $winningShip, Ship $losingShip)
+    public function __construct(Bool $usedSpatiodriveBoosters, ?Ship $winningShip, ?Ship $losingShip)
     {
         $this->usedSpatiodriveBoosters = $usedSpatiodriveBoosters;
         $this->winningShip = $winningShip;
@@ -20,7 +20,7 @@ class BattleResult
     }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getWinningShip() : Ship
     {
@@ -28,7 +28,7 @@ class BattleResult
     }
 
     /**
-     * @return Ship
+     * @return Ship|null
      */
     public function getLosingShip () : Ship
     {
@@ -41,6 +41,10 @@ class BattleResult
     public function wereBoosterUsed () : Bool
     {
         return $this->usedSpatiodriveBoosters;
+    }
+
+    public function isThereAWinner(): Bool {
+        return $this->getWinningShip() !== null;
     }
     
 }
