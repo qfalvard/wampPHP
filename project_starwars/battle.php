@@ -1,8 +1,7 @@
 <?php
 require __DIR__ . '/bootstrap.php';
 
-$shipLoader = new ShipLoader();
-$ships = $shipLoader->getShips();
+$ships = ShipLoader::getShips();
 
 // On vérifie que les données du formulaire existent :
 $ship1Name      = isset($_POST['ship1_name']) ? $_POST['ship1_name'] : null;
@@ -59,14 +58,14 @@ $outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity
     <div class="card-body text-center">
         <h3 class="text-center audiowide">
             Gagnant :
-            <?php if ($outcome->getWinningShip()) : ?>
+            <?php if ($outcome->isThereAWinner()) : ?>
                 <?php echo $outcome->getWinningShip()->getName(); ?>
             <?php else : ?>
                 Personne
             <?php endif; ?>
         </h3>
         <p class="text-center">
-            <?php if ($outcome->getWinningShip() == null) : ?>
+            <?php if (!$outcome->isThereAWinner()) : ?>
                 Les deux opposants se sont détruits lors de leur bataille épique.
             <?php else : ?>
                 Le groupe de <?php echo $outcome->getWinningShip()->getName(); ?>
@@ -76,6 +75,8 @@ $outcome = $battleManager->battle($ship1, $ship1Quantity, $ship2, $ship2Quantity
                     a été plus puissant et a détruit le groupe de <?php echo $outcome->getLosingShip()->getName() ?>s
                 <?php endif; ?>
             <?php endif; ?>
+            <p>La résistance de Ship1 est <?= $ship1->getName();?> : <?= $ship1->getStrength();?></p>
+            <p>La résistance de Ship2 est <?= $ship2->getName();?> : <?= $ship2->getStrength();?></p>
         </p>
     </div>
 
