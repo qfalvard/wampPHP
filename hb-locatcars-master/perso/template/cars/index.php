@@ -19,7 +19,7 @@
     <ul>
         <?php foreach ($cars as $car) : ?>
             <li style="list-style: none;">
-                <?= $car['brand'] . ' ' . $car['model'] ?>
+                <?= $car->getBrand() . ' ' . $car->getModel() ?>
             </li>
         <?php endforeach ?>
     </ul>

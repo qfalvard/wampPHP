@@ -1,6 +1,6 @@
 <?php
 
-namespace APP\Model;
+namespace App\Model;
 
 class Car {
     
@@ -9,7 +9,7 @@ class Car {
     private $id;
 
     /**
-     * @return ind
+     * @return int
      */
     public function getId() {
         return $this->id;
@@ -19,7 +19,7 @@ class Car {
      * @param int $id
      * @return void
      */
-    public function setID(int $id) {
+    public function setId(int $id) {
         $this->id = $id;
     }    
 
@@ -28,11 +28,11 @@ class Car {
     }
 
     public function setBrand(string $brand) {
-        $this->id = $brand;
+        $this->brand = $brand;
     }
     
     public function setModel(string $model) {
-        $this->id = $model;
+        $this->model = $model;
     }    
     
     public function getModel() {

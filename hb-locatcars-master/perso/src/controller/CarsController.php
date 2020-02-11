@@ -8,7 +8,6 @@ class CarsController extends AbstractController {
 
         $cars = $this->container->getCarManager()->findAll();
 
-        dd($cars);
 
         include __DIR__ . '/../../template/cars/index.php';
     }
