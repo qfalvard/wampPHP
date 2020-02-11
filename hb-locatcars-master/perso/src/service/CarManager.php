@@ -16,7 +16,7 @@ class CarManager {
     /**
      * @return Car[]
      */
-    public function finAll(){
+    public function findAll(){
 
         $query = "SELECT * FROM car";
         $statement = $this->pdo->prepare($query);

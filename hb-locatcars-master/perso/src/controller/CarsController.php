@@ -2,22 +2,14 @@
 
 namespace App\Controller;
 
-class CarsController {
+class CarsController extends AbstractController {
 
     public function index() {
 
-        $cars=[
-            [
-                "brand" =>"Ford",
-                "model" => "Fiesta",
-            ],
-            [
-                "brand" => "Citroën",
-                "model" => "C3",
-            ],
-        ];
+        $cars = $this->container->getCarManager()->findAll();
+
+        dd($cars);
 
         include __DIR__ . '/../../template/cars/index.php';
     }
-
 }
