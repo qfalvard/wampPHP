@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+
+<article class="container ">
+    <div class="d-flex justify-content-around">
+        <a class="mx-3 mt-5 btn btn-info" href="{{env.base_path}}/users/">Users list</a>
+        <a class="mx-3 mt-5 btn btn-info" href="{{env.base_path}}/cars/">Cars list</a>
+        <a class="mx-3 mt-5 btn btn-info" href="{{env.base_path}}/location/">Location list</a>
+    </div>
+</article>
+
+{% endblock content %}

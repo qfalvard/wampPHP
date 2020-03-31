@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Nouveau car
+{% endblock title %}
+
+{% block content %}
+<form action="{{env.base_path}}/cars/create" method="POST">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Brand</label>
+        <input name="brand" type="text" class="form-control" id="exampleFormControlInput1" placeholder="brand">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">Model</label>
+        <input name="model" type="text" class="form-control" id="exampleFormControlInput1" placeholder="model">
+    </div>
+    <input type="submit" value="Créer" class="btn btn-info">
+</form>
+{% endblock content %}

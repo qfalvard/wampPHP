@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Liste des location
+{% endblock title %}
+
+{% block content %}
+<div>
+    <a class="btn btn-success" href="{{env.base_path}}/users/">liste des users</a>
+    <a class="btn btn-success" href="{{env.base_path}}/cars/">liste des cars</a>
+</div>
+<ul class="row">
+    {% for location in locations %}
+    <div class="col-4 text-justify">
+        <li class="btn text-justify border m-2">
+            user : {{location.user.firstname}} {{location.user.lastname}} <br>
+            car : {{location.car.model}} {{location.car.brand}} <br>
+            city : {{location.city}} <br>
+            date : {{location.date}} <br>
+            </a>
+            <!-- <a class="btn btn-info" <a href="{{env.base_path}}/car/{{location.id}}">show</a> -->
+            <a class="btn btn-danger" href="{{env.base_path}}/location/{{location.id}}/delete" method="DELETE">delete</a>
+            <!-- <a class="btn btn-warning" href="{{env.base_path}}/location/{{location.id}}/showedit" method="UPDATE">Edit</a> -->
+        </li>
+    </div>
+    {% endfor %}
+</ul>
+<div>
+    <a class="btn btn-info" href="{{env.base_path}}/location/new">Nouvelle location</a>
+</div>
+{% endblock content %}

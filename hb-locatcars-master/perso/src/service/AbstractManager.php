@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Controller;
+namespace App\Service;
 
-abstract class AbstractController {
+abstract class AbstractManager {
 
     protected $container;
     protected $config;

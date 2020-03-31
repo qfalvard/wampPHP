@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Liste des Users
+{% endblock title %}
+
+{% block content %}
+<div>
+    <a class="btn btn-success" href="{{env.base_path}}/cars/">liste des cars</a>
+    <a class="btn btn-success" href="{{env.base_path}}/location/">liste des locations</a>
+</div>
+<ul class="row">
+    {% for user in users %}
+    <div class="col-4 text-justify">
+        <li class="btn text-justify border m-2">
+            ID : {{user.id}} <br>
+            Firstname : <a href="{{env.base_path}}/users/{{user.id}}"></a>{{user.firstname}}</a> <br>
+            Lastname : {{user.lastname}} <br>
+            </a>
+            <a class="btn btn-info" <a href="{{env.base_path}}/users/{{user.id}}">show</a>
+            <a class="btn btn-danger" href="{{env.base_path}}/users/{{user.id}}/delete" method="DELETE">delete</a>
+            <a class="btn btn-warning" href="{{env.base_path}}/users/{{user.id}}/showedit" method="UPDATE">Edit</a>
+        </li>
+    </div>
+    {% endfor %}
+</ul>
+<div>
+    <a class="btn btn-info" href="{{env.base_path}}/users/new" method="POST">Nouvelle voiture</a>
+</div>
+{% endblock content %}

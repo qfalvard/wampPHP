@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Détail utilisateur
+{% endblock title %}
+
+{% block content %}
+    <h2> {{user.firstname}} </h2>
+    <h3> {{user.lastname}} </h3>
+    <br>
+    <a class="btn btn-warning" href="{{env.base_path}}/users/{{user.id}}/showedit" method="UPDATE">Edit</a>
+{% endblock content %}

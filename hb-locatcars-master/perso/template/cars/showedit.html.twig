@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Edit car
+{% endblock title %}
+
+{% block content %}
+<form action="{{env.base_path}}/cars/{{car.id}}/edit" method="POST">
+    <div class="form-group">
+        <label for="exampleFormControlInput1">brand</label>
+        <input name="brand" type="text" class="form-control" id="exampleFormControlInput1" placeholder="{{car.brand}}">
+    </div>
+    <div class="form-group">
+        <label for="exampleFormControlInput1">model</label>
+        <input name="model" type="text" class="form-control" id="exampleFormControlInput1" placeholder="{{car.model}}">
+    </div>
+    <input type="submit" value="Editer" class="btn btn-info">
+</form>
+{% endblock content %}

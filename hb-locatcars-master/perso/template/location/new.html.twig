@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+Location de voiture
+{% endblock title %}
+
+{% block content %}
+<div class="form-group">
+    <form action="{{env.base_path}}/location/create" method="POST">
+        <div class="row">
+            <div class="col-6">
+                <label for="user">
+                    <h2>
+                        User
+                    </h2>
+                </label>
+                <select class="form-control" name="user_id" id="user">
+                    {% for user in users %}
+                    <option value="{{user.id}}">{{user.firstname}} {{user.lastname}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-6">
+                <label for="cars">
+                    <h2>
+                        Cars
+                    </h2>
+                </label>
+                <select class="form-control" name="car_id" id="car">
+                    {% for car in cars %}
+                    <option value="{{car.id}}">{{car.brand}} {{car.model}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-6 mt-2">
+                <label for="date">
+                    <h2>Reservation date</h2>
+                </label>
+                <input class="form-control" type="date" name="date" id="date">
+            </div>
+            <div class="col-6 mt-2">
+                <label for="city">
+                    <h2>Reservation city</h2>
+                </label>
+                <input class="form-control" type="text" name="city" placeholder="city">
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <input class="btn btn-success" type="submit" value="Louer">
+        </div>
+    </form>
+</div>
+{% endblock content %}

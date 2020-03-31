@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Service;
-use PDO;
-use App\Model\Car;
 
-class CarManager implements ManagerInterface {
+use App\Model\User;
+use PDO;
+
+class UserManager implements ManagerInterface
+{
 
     private $pdo;
 
@@ -13,49 +15,34 @@ class CarManager implements ManagerInterface {
         $this->pdo = $pdo;
     }
 
+    public function arrayToObject(array $array)
+    {
+        $user = new User;
+        $user->setId($array['id']);
+        $user->setFirstname($array['firstname']);
+        $user->setLaststname($array['lastname']);
 
-    /**
-     * @return Car[]
-     */
+        return $user;
+    }
+
     public function findAll()
     {
-
-        $query = "SELECT * FROM car";
+        $query = "SELECT * FROM user";
         $statement = $this->pdo->prepare($query);
         $statement->execute();
-
         $data = $statement->fetchAll(PDO::FETCH_ASSOC);
-        // return $data; => return pour envoyer du JSon dans carsController.
-        $cars = [];
+        $users = [];
 
-        foreach($data as $d) {
-            $cars[] = $this->arrayToObject($d);
-            // array_push($cars, $this->arrayTooObject($d));
+        foreach ($data as $value) {
+            $users[] = $this->arrayToObject($value);
         }
 
-        return $cars;
-
+        return $users;
     }
 
-    /**
-     * @param array $array
-     */
-    public function arrayToObject(array $array){
-        $car = new Car;
-        $car->setId($array['id']);
-        $car->setBrand($array['brand']);
-        $car->setModel($array['model']);
-
-        return $car;
-    }
-
-    /**
-     * @param int
-     * @return Car
-     */
     public function findOneById(int $id)
     {
-        $query = "SELECT * FROM car where id = :id";
+        $query = "SELECT * FROM user where id = :id";
         $statement = $this->pdo->prepare($query);
         $statement->execute([
             'id' => $id
@@ -70,19 +57,19 @@ class CarManager implements ManagerInterface {
     {
     }
 
-    public function add()
+    public function create()
     {
-        $query = "INSERT INTO car(brand, model) VALUES (:brand, :model)";   // La requête SQL
+        $query = "INSERT INTO user(firstname, lastname) VALUES (:firstname, :lastname)";   // La requête SQL
         $response = $this->pdo->prepare($query);  // On demande à la bdd de se préparer  à une requête
         $response->execute([
-            'brand' => $_POST['brand'],
-            'model' => $_POST['model'],
+            'firstname' => $_POST['firstname'],
+            'lastname' => $_POST['lastname'],
         ]);
     }
 
     public function supp(int $id)
     {
-        $query = "DELETE FROM car WHERE id = :id";
+        $query = "DELETE FROM user WHERE id = :id";
         $response = $this->pdo->prepare($query);
 
         // On indique à quoi correspondent les pseudo-variables
@@ -93,14 +80,15 @@ class CarManager implements ManagerInterface {
 
     public function edit(int $id, array $data)
     {
-        $query = "UPDATE car SET brand = :brand, model = :model WHERE id = :id";
+        $query= "UPDATE user SET firstname = :firstname, lastname = :lastname WHERE id = :id";
         $response = $this->pdo->prepare($query);
 
         // On exécute la requête en indiquant à quoi correspondent les pseudo-variables
         $response->execute([
             'id'    => $id,
-            'brand'    => $data['brand'],
-            'model'    => $data['model'],
+            'firstname'    => $data['firstname'],
+            'lastname'    => $data['lastname'],
         ]);
     }
+
 }
